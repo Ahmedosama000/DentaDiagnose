@@ -1,0 +1,595 @@
+@extends('layouts.header')
+
+@section('title','Home')
+
+@section('css')
+
+<!-- Owl Carusal -->
+<link rel="stylesheet" href="css/owl.carousel.min.css" />
+<!-- Bootstrap Library -->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+
+@endsection
+
+@section('content')
+
+  <div class="header">
+    <div class="logo">
+      <img src="images/logo.svg" alt="logo" loading="lazy" />
+    </div>
+    <div class="img">
+      <img src="images/header.png" alt="header" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="services">
+    <div>
+      <h2 class="main-title">Our Services</h2>
+    </div>
+    <section id="feature" class="feature sections">
+      <div class="container">
+        <div class="all_services text-center row">
+          <div class="srv">
+            <div class="single_service">
+              <div class="single_service_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  viewBox="0 0 3000 3000" style="enable-background: new 0 0 3000 3000" xml:space="preserve">
+                  <g>
+                    <g id="circuit">
+                      <path class="st0"
+                        d="M2563.2,2985H436.8C204.2,2985,15,2795.8,15,2563.2V436.8C15,204.2,204.2,15,436.8,15h2126.3
+                        c232.6,0,421.8,189.2,421.8,421.8v2126.3C2985,2795.8,2795.8,2985,2563.2,2985z M436.8,146.4c-160.1,0-290.4,130.3-290.4,290.4
+                        v2126.3c0,160.1,130.3,290.4,290.4,290.4h2126.3c160.1,0,290.4-130.3,290.4-290.4V436.8c0-160.1-130.3-290.4-290.4-290.4H436.8z" />
+                    </g>
+                    <g id="text">
+                      <path
+                        d="M1053.2,1759.8l-145.5,440.6h-187l475.9-1400.7h218.2l478,1400.7h-193.3l-149.6-440.6H1053.2z M1512.5,1618.5
+                        l-137.2-403.2c-31.2-91.4-52-174.6-72.7-255.6h-4.2c-20.8,83.1-43.6,168.3-70.7,253.5l-137.2,405.3H1512.5z" />
+                      <path d="M2279.3,799.6v1400.7h-180.8V799.6H2279.3z" />
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <h4>AI DIAGNOSTICS</h4>
+              <div class="separator3"></div>
+              <p>
+                AI Diagnostics quickly analyzes dental radiographs using
+                advanced algorithms, detecting abnormalities and providing
+                accurate diagnostic information to enhance patient care.
+              </p>
+            </div>
+          </div>
+          <div class="srv">
+            <div class="single_service">
+              <div class="single_service_icon">
+                <svg xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 283.5 371.3"
+                  style="enable-background: new 0 0 283.5 371.3" xml:space="preserve" class="icon" fill="#ffffff">
+                  <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)">
+                    <path class="st0"
+                      d="M2551.1,1429.1c142.6,0,258.2,115.5,258.4,258.1c1.2,1077.1,9.1,2463.2-0.2,2482.4
+                      c-15.8,31.5-886.2,904.9-919.2,922.1c-25.8,12.9-48.8,0.7-810.2,0c-331.5-0.4-610.9,1.6-799.6,2.4
+                      c-143.1,0.6-259.5-115.2-259.5-258.4v0V1687.5c0-142.7,115.7-258.4,258.4-258.4L2551.1,1429.1z M1410.4,1636.3H368.8
+                      c-77.7,0-140.7,63-140.7,140.7v290.6v2668.9c0,77.7,63,140.7,140.7,140.7h1365V4594c0-183.6,2.9-296.1,7.9-320.5
+                      c26.5-123.3,125.5-222.3,248.8-248.8c24.4-5,137-7.9,320.5-7.9h283.2V1777c0-77.7-63-140.7-140.7-140.7H1410.4z M2235,4233.3
+                      c-197.2-1.4-201.5-1.4-230.2,14.3c-53.8,30.1-55.9,41.6-55.9,272.5v202.9l243.8-243.8l243.8-243.8L2235,4233.3z" />
+                    <path class="st0" d="M714.2,3557.2c-30.8-15.8-55.9-58.1-55.9-92.5c0-35.9,25.1-76.7,57.4-93.2c27.2-14.3,40.9-14.3,695.5-14.3
+                      s668.3,0,695.5,14.3c32.3,16.5,57.4,57.4,57.4,93.2s-25.1,76.7-57.4,93.2c-27.2,14.3-40.2,14.3-696.9,14.3
+                      C757.9,3571.5,740,3571.5,714.2,3557.2z" />
+                    <path class="st0" d="M714.2,3127c-30.8-15.8-55.9-58.1-55.9-92.5c0-35.9,25.1-76.7,57.4-93.2c27.2-14.3,40.9-14.3,695.5-14.3
+                      s668.3,0,695.5,14.3c32.3,16.5,57.4,57.4,57.4,93.2s-25.1,76.7-57.4,93.2c-27.2,14.3-40.2,14.3-696.9,14.3
+                      C757.9,3141.3,740,3141.3,714.2,3127z" />
+                    <path class="st0" d="M714.2,2696.8c-30.8-15.8-55.9-58.1-55.9-92.5c0-35.9,25.1-76.7,57.4-93.2c27.2-14.3,40.9-14.3,695.5-14.3
+                      s668.3,0,695.5,14.3c32.3,16.5,57.4,57.4,57.4,93.2s-25.1,76.7-57.4,93.2c-27.2,14.3-40.2,14.3-696.9,14.3
+                      C757.9,2711.1,740,2711.1,714.2,2696.8z" />
+                    <path class="st0" d="M714.2,2266.6c-30.8-15.8-55.9-58.1-55.9-92.5c0-35.9,25.1-76.7,57.4-93.2c27.2-13.6,41.6-14.3,480.4-14.3
+                      s453.2,0.7,480.4,14.3c32.3,16.5,57.4,57.4,57.4,93.2s-25.1,76.7-57.4,93.2c-27.2,13.6-40.9,14.3-481.8,14.3
+                      C757.2,2280.9,740,2280.2,714.2,2266.6z" />
+                  </g>
+                </svg>
+              </div>
+              <h4>REPORT SHARING</h4>
+              <div class="separator3"></div>
+              <p>
+                allows for seamless exchange of diagnostic reports between
+                radiology centers, dentists and patients, promoting effective
+                communication and collaboration to improve patient care.
+              </p>
+            </div>
+          </div>
+          <div class="srv">
+            <div class="single_service">
+              <div class="single_service_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 336 374.2" style="enable-background: new 0 0 336 374.2" xml:space="preserve" class="icon"
+                  fill="#ffffff">
+                  <g>
+                    <path class="st0" d="M334.2,103.7C334,95.2,335,85.8,331,78c-3.6-7.2-8.6-11.4-18.1-15.3c-8.5-3.5-14.9-7.5-20.9-13.2
+                      c-6.6-6.2-10.8-12-14.1-19.4c-5.6-12.4-6.9-14.6-11.1-18.4c-6.2-5.7-12.4-7.3-20.7-7.3c-25.6,0-51.1,0-76.7-0.1
+                      c-20.8,0-41.5-0.1-62.3,0c-8.6,0-18.1-0.4-26.5,1.7c-7.7,1.9-14.4,6-18.3,14.6c-1,2.1-2.9,6.4-4.4,9.4c-6.6,14.7-19.1,26.3-35,32.7
+                      C7.5,69,1.8,81.7,1.7,97.6c-0.1,23.1-0.7,46.8,2.7,69.8c8.4,57.7,35,109.8,76.4,149.6c19.6,18.9,39.4,32.7,63.5,44.8
+                      c15.9,7.9,21.7,9.4,30.2,7.4c5-1.1,27.8-12.6,38.4-19.2c52.7-33.1,92.3-84.9,110.2-144.5c7-23.3,10.1-47.4,11-71.6
+                      C334.5,123.8,334.4,113.7,334.2,103.7z M312.4,120.6c-0.4,32.2-0.8,37.9-4.1,55.4c-6.4,33.8-20.8,66.8-41.7,95.4
+                      c-17.9,24.4-41.7,46.3-67.2,61.8c-10.6,6.4-28.8,15.4-31.4,15.4c-2.7,0-18.6-7.7-29.9-14.5c-20.3-12.2-37.4-26.1-52.2-42.3
+                      c-36.4-39.8-57.9-89.2-62-142.5c-0.4-5.3-0.7-21-0.7-34.9c0-22.5,0.1-25.5,1.2-27.4c0.9-1.5,2.9-2.8,8.1-4.9
+                      C53,73.3,68.2,58.8,77.3,39.3c5.4-11.6,5.6-11.9,7.4-12.9c1.4-0.7,19.2-0.9,83.2-0.9c79.1,0,81.5,0.1,83.7,1.4
+                      c1.6,1,2.7,2.6,3.8,5.4c8.5,22.7,25.3,40.2,47.9,49.7C313.6,86.3,312.8,83.2,312.4,120.6z" />
+                    <path class="st0" d="M212.6,124.6c0-20.4-0.4-22.9-5.1-32.6c-8.6-17.6-29.3-27.4-49.2-23.2c-12.1,2.6-24.1,11.8-29.9,22.9
+                      c-4.6,9-5.1,12.2-5.1,32.9c0,19.7,0.2,18.9-4.3,18.9h0c-12,0-21.8,9.8-21.8,21.8v91.4c0,12,9.8,21.8,21.8,21.8h98.1
+                      c12,0,21.8-9.8,21.8-21.8v-91.4c0-12-9.8-21.8-21.8-21.8h-0.2C212.4,143.4,212.6,144.3,212.6,124.6z M145.3,108.5
+                      c1.6-9.8,9.4-17.5,19.2-19c4.4-0.7,8.7,0,12.6,1.8c9.2,4.1,12.7,11.9,13.9,20.7v25.5v5.2c0,0-23.2,0-23.2,0s-23.3,0-23.3,0
+                      c0-5.8,0.1-11.6,0.2-17.4C144.9,119.8,144.4,114,145.3,108.5z M212.1,256.7h-88.2c-2.9,0-5.3-2.4-5.3-5.3v-81.4
+                      c0-2.9,2.4-5.3,5.3-5.3h88.2c2.9,0,5.3,2.4,5.3,5.3v81.4C217.4,254.3,215.1,256.7,212.1,256.7z" />
+                    <path class="st0" d="M167.7,232.2L167.7,232.2c-6,0-10.9-4.9-10.9-10.9v-20.4c0-6,4.9-10.9,10.9-10.9h0c6,0,10.9,4.9,10.9,10.9
+                      v20.4C178.6,227.3,173.8,232.2,167.7,232.2z" />
+                  </g>
+                </svg>
+              </div>
+              <h4>SECURE COMMUNICATION</h4>
+              <div class="separator3"></div>
+              <p>
+                this feature ensures the privacy of sensitive data, reducing
+                the likelihood of communication errors and contributing to the
+                overall efficiency of dental care interactions.
+              </p>
+            </div>
+          </div>
+          <div class="srv">
+            <div class="single_service">
+              <div class="single_service_icon">
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 1024 1024"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M960 95.888l-256.224.001V32.113c0-17.68-14.32-32-32-32s-32 14.32-32 32v63.76h-256v-63.76c0-17.68-14.32-32-32-32s-32 14.32-32 32v63.76H64c-35.344 0-64 28.656-64 64v800c0 35.343 28.656 64 64 64h896c35.344 0 64-28.657 64-64v-800c0-35.329-28.656-63.985-64-63.985zm0 863.985H64v-800h255.776v32.24c0 17.679 14.32 32 32 32s32-14.321 32-32v-32.224h256v32.24c0 17.68 14.32 32 32 32s32-14.32 32-32v-32.24H960v799.984zM736 511.888h64c17.664 0 32-14.336 32-32v-64c0-17.664-14.336-32-32-32h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32zm0 255.984h64c17.664 0 32-14.32 32-32v-64c0-17.664-14.336-32-32-32h-64c-17.664 0-32 14.336-32 32v64c0 17.696 14.336 32 32 32zm-192-128h-64c-17.664 0-32 14.336-32 32v64c0 17.68 14.336 32 32 32h64c17.664 0 32-14.32 32-32v-64c0-17.648-14.336-32-32-32zm0-255.984h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32h64c17.664 0 32-14.336 32-32v-64c0-17.68-14.336-32-32-32zm-256 0h-64c-17.664 0-32 14.336-32 32v64c0 17.664 14.336 32 32 32h64c17.664 0 32-14.336 32-32v-64c0-17.68-14.336-32-32-32zm0 255.984h-64c-17.664 0-32 14.336-32 32v64c0 17.68 14.336 32 32 32h64c17.664 0 32-14.32 32-32v-64c0-17.648-14.336-32-32-32z" />
+                </svg>
+              </div>
+              <h4>RESERVATION</h4>
+              <div class="separator3"></div>
+              <p>
+                this feature ensures the privacy of sensitive data, reducing
+                the likelihood of communication errors and contributing to the
+                overall efficiency of dental care interactions.
+              </p>
+            </div>
+          </div>
+          <div class="srv">
+            <div class="single_service">
+              <div class="single_service_icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 430.9 374.2" style="enable-background: new 0 0 430.9 374.2" xml:space="preserve"
+                  class="icon" fill="#ffffff">
+                  <g>
+                    <path class="st0" d="M350.1,163.9L350.1,163.9l-18.4-0.4l-0.4-18.4c-0.3-14.8-0.5-15-5.1-18.4c-1-0.7-3.6-1.5-6.6-1.5
+                                c-1.7,0-3.1,0.2-4,0.7c-2.7,1.2-5.1,3.7-6.1,6.4c-0.2,0.7-0.8,6.2-0.8,14.3v17l-18.5,0.4c-14.9,0.3-15.1,0.6-18.6,5.3
+                                c-1.8,2.4-1.8,9.4,0,11.8c3.5,4.8,3.7,5.1,18.5,5.3l18.4,0.4l0.4,18.4c0.3,14.8,0.6,15,5.3,18.5c2.4,1.8,9.4,1.8,11.8,0
+                                c4.8-3.5,5.1-3.7,5.3-18.5l0.4-18.4l18.4-0.4c14.8-0.3,15-0.6,18.5-5.3c1.8-2.4,1.8-9.4,0-11.8
+                                C365.1,164.5,364.9,164.2,350.1,163.9z" />
+                    <path class="st0"
+                      d="M427.4,196.7c1.3-11,1.3-22.2,1.3-33.2c0-14.1-0.1-28.1-0.2-42.2c0-11.3-0.7-24.1-9-31.8
+                                c-10.9-10-28.5-5.9-42.2-11.5C357.1,69.7,349,42,327.8,37c-6.8-1.6-14.1-0.5-20.6-3c-4.5-1.7-8.3-5.1-12.1-8
+                                c-31.4-24.5-77.8-27.8-112.4-8.1c-4.2,2.4-8.6,5.2-13.4,5.2c-4.2,0-8-2.2-11.7-4.1C143.6,11.8,128.6,6.7,113,5.2
+                                C67.5,1,21,31.9,7.3,75.6c-8.8,28.2-4.9,58.9,2.5,87.5c7.4,28.6,18.1,56.5,22.9,85.7c4,24.5,3.9,49.9,12,73.6
+                                c8.5,24.9,28.3,41.5,54.5,46.1c5.7,1,11.7,1.4,17.1-0.6c11.3-4,17.2-16.7,18.5-28.7s-0.8-24,0.4-36c2.1-20.9,15.2-40.4,33.6-50.5
+                                c19.7,11.3,33.1,33,34.3,55.7c0.5,10-1.2,20.1-0.5,30.1c0.7,10,4.3,20.7,12.6,26.2c7.4,4.9,17,4.9,25.7,3.1
+                                c29.7-6.2,53.9-33,57-63.1c9.5,6.1,22,5.9,32.7,2.1c10.6-3.8,19.9-10.7,28.9-17.5c25.5-19.2,52.2-40.1,62.9-70.1
+                                C424.9,212,426.4,204.4,427.4,196.7z M274.6,301.8l0,0.2c-0.1,0.8-0.3,1.6-0.4,2.5c-3.5,21.4-15.4,35.3-34.3,40.2
+                                c-0.6,0.2-1.2,0.3-1.7,0.5l-0.2,0.1c-2,0.6-3.7,1.1-5.3,1.1c-1.5,0-2.7-0.4-3.8-1.2c-3.2-2.4-3.2-6.1-3.1-18.5c0-1.5,0-3,0-4.7
+                                c0-20.8-0.9-28.2-4.8-39.9c-4.9-14.7-16.3-30.7-28.9-40.8c-9.1-7.3-14.6-9.5-23.3-9.5s-14.2,2.2-23.4,9.5
+                                c-12.6,10.1-23.8,25.9-29.1,41.3c-3.8,11.3-4.6,18.7-4.6,39.5c0,1.7,0,3.3,0,4.7c0,12.3,0,16.1-3.1,18.5c-1.1,0.8-2.4,1.2-3.8,1.2
+                                c-1.6,0-3.2-0.5-5.3-1c-0.6-0.2-1.3-0.4-2-0.6C84,341.1,74.2,333.2,68.3,321c-3.8-7.6-4.1-9.3-10.5-53.7c-4-27.9-7.2-47.5-7.7-49.3
+                                c-0.6-2.2-5-16.5-10.2-32.9c-4.8-15.3-9.9-32.8-11.2-38.3c-4.5-21.2-5.1-46.3-1.5-59.6C34,62,53.5,40.8,78.2,31.9
+                                c13-4.7,32.9-5.6,46.3-1.9c3.3,0.9,8.8,2.9,12.3,4.5l12.5,5.6l-15.2,10.3c-11.3,7.8-11.3,8.9-11.3,14.1c0,7.2,3.7,10.9,10.8,10.9
+                                h4.3l29.5-19.8c11.6-7.8,32-21.2,37.2-23.1c14.4-5.4,33.3-6.5,48-2.7c8.2,2.2,23.6,9.8,28.8,14.4c3.5,3,6.5,5.5,3,11.1
+                                c-3.8,5.7-13.3,15-18.8,18.4c-8.5,5.1-16.6,7.5-27.9,8.6c-15.3,1.4-27.8,10.1-29.8,25.9c-1.3,9.9-0.4,20.4-0.4,30.4
+                                c0,11,0.2,21.9,0.2,32.8c0.1,8.4-0.3,17.1,0.8,25.4c3,22.5,13.6,44.3,29,59.9c3.4,3.5,13,11.6,21.3,18.1c1.2,0.9,2.3,1.8,3.3,2.6
+                                C274.9,287.2,276.8,288.7,274.6,301.8z M323.2,286L323.2,286c-2,0.6-3.5,0.8-5,0.8c-1.5,0-3.1-0.3-5-0.8
+                                c-5.8-1.7-48.6-35.2-57.9-44.2c-8.2-7.9-15.1-18.2-18.8-28.1c-5.5-13.8-5.9-18.6-5.9-63.8v-44.2l11-1c14.2-1.3,28.4-6.4,40-14.3
+                                c5.9-4,14.9-13.2,22.5-22.8c5.5-6.9,7-7.8,8.2-8.2c3-1.2,9.2-1,11.7-0.1c1.9,0.7,5.3,4.3,10.1,10.5c16.9,21.1,34.8,31.7,58.3,34.5
+                                l13.4,1.6v44.3c0,33.7-0.3,42.4-1.6,48.9c-3.5,16.9-11.2,31.2-23.1,42.7C371.8,250.7,329,284.3,323.2,286z" />
+                  </g>
+                </svg>
+              </div>
+              <h4>DENTAL NETWORK</h4>
+              <div class="separator3"></div>
+              <p>
+                this feature ensures the privacy of sensitive data, reducing
+                the likelihood of communication errors and contributing to the
+                overall efficiency of dental care interactions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="dentist">
+    <div>
+      <h2 class="main-title">Dentists</h2>
+    </div>
+    <div class="dentist-carousel owl-carousel owl-theme" id="dentistCarousel">
+      <div class="card">
+        <img src="images/d6.png" alt="doctor" />
+        <div class="info">
+          <h4>Dentist Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/d5.png" alt="doctor" />
+        <div class="info">
+          <h4>Dentist Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/d7.jpg" alt="doctor" />
+        <div class="info">
+          <h4>Dentist Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/d3.jpg" alt="doctor" />
+        <div class="info">
+          <h4>Dentist Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/d1.jpg" alt="doctor" />
+        <div class="info">
+          <h4>Dentist Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/d2.jpg" alt="doctor" />
+        <div class="info">
+          <h4>Dentist Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images//d4.jpg" alt="doctor" />
+        <div class="info">
+          <h4>Dentist Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dentist">
+    <div>
+      <h2 class="main-title">Rays Center</h2>
+    </div>
+    <div class="dentist-carousel owl-carousel owl-theme" id="radiologyCarousel">
+      <div class="card">
+        <img src="images/Latest-Facts.png" alt="doctor" />
+        <div class="info">
+          <h4>Center Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/martha-dominguez.png" alt="doctor" />
+        <div class="info">
+          <h4>Center Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/national-cancer.png" alt="doctor" />
+        <div class="info">
+          <h4>Center Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/samuel.png" alt="doctor" />
+        <div class="info">
+          <h4>Center Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/r1.jpg" alt="doctor" />
+        <div class="info">
+          <h4>Dentist Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/r2.png" alt="doctor" />
+        <div class="info">
+          <h4>Center Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="images/samuel.png" alt="doctor" />
+        <div class="info">
+          <h4>Center Name</h4>
+          <div class="stars">
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <small class="fa fa-star text-warning"></small>
+            <span>( 5 )</span>
+          </div>
+          <p><i class="fa-solid fa-phone"></i><span>01045695221</span></p>
+          <p><i class="fa-solid fa-location-dot"></i><span>Mansoura, Egypt</span></p>
+          <p><i class="fa-solid fa-clock"></i><span>10 AM : 6 PM</span></p>
+          <p><i class="fa-solid fa-calendar-days"></i><span>Sunday : Thursday</span></p>
+          <button>View Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="download__app">
+    <div>
+      <div>
+        <h2 class="main-title">Download App</h2>
+      </div>
+      <div>
+        <div class="row">
+          <div class="text-center text-lg-start content">
+            <h1 class="text-white animated slideInDown">
+              Download The DentaDiagnose Application From The Store
+            </h1>
+            <p class="text-white animated slideInDown">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam
+              qui, libero neque ipsam minima voluptatum itaque! Eaque aperiam
+              adipisci, itaque accusamus odit ducimus.
+            </p>
+            <div class="store">
+              <div>
+                <a href="#" class="mx-2"><img src="images/d-google-play.svg" alt="Google Play" /></a>
+              </div>
+              <div>
+                <a href="#" class="mx-2"><img src="images/d-app-store.svg" alt="App Store" /></a>
+              </div>
+              <div>
+                <a href="#" class="mx-2"><img src="images/d-app-gallery.svg" alt="App galley" /></a>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex wow fadeInUp screenshots" data-wow-delay="0.3s">
+            <div class="owl-carousel screenshot-carousel">
+              <img class="img-fluid" src="images/screenshot-1.jpg" alt="screenshot" />
+              <img class="img-fluid" src="images/screenshot-2.jpg" alt="screenshot" />
+              <img class="img-fluid" src="images/screenshot-3.jpg" alt="screenshot" />
+              <img class="img-fluid" src="images/screenshot-4.jpg" alt="screenshot" />
+              <img class="img-fluid" src="images/screenshot-5.jpg" alt="screenshot" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <footer>
+    <div class="logo">
+      <img src="images/logo.svg" alt="logo">
+    </div>
+    <div class="store">
+      <img src="images/google-play.svg" alt="Google">
+      <img src="images/app-store.svg" alt="Apple">
+    </div>
+    <div class="list">
+      <p>About Us</p>
+      <p>Contact Us</p>
+    </div>
+    <div class="follow__us">
+      <p>Follow us</p>
+      <div class="social">
+        <i class="fa-brands fa-square-facebook fa-2x"></i>
+        <i class="fa-brands fa-linkedin fa-2x"></i>
+        <i class="fa-brands fa-square-x-twitter fa-2x"></i>
+      </div>
+    </div>
+  </footer> -->
+
+
+  <footer class="footer">
+      <div class="row">
+        <div class="footer-col logo">
+          <h4>company</h4>
+          <p>Download The DentaDiagnose Application From The Store </p>
+          <div class="store">
+            <img src="images/google-play.svg" alt="Google">
+            <img src="images/app-store.svg" alt="Apple">
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="#">about us</a></li>
+            <li><a href="#">our services</a></li>
+            <li><a href="#">privacy policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contct us</a></li>
+            <li><a href="#">privacy policy</a></li>
+          </ul>
+        </div>
+      
+        <div class="footer-col">
+          <h4>Follow us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+ </footer>
+  
+  <!-- Lib -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/sliders.js"></script>
+
+  @endsection
