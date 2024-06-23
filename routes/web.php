@@ -31,6 +31,18 @@ Route::get('/faq', [App\Http\Controllers\HomeController::class, 'FAQ'])->name('f
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'Contact'])->name('contact');
 
 
-Route::get('/dentist', [DentistController::class, 'show'])->name('show.dentist');
+Route::group(['middleware' => ['auth','dentist']] , function() {
 
-Route::get('/radiology', [RadiologyController::class, 'show'])->name('show.center');
+    Route::get('/dentist', [DentistController::class, 'showAll'])->name('show.dentist');
+    Route::get('/dentist/info/{id}', [DentistController::class, 'ShowDetails'])->name('show.info');
+    Route::post('dentist/request',[DentistController::class,'DenRequest'])->name('dentist.request');
+    Route::post('dentist/change',[DentistController::class,'ChangeInfo'])->name('dentist.change');
+    Route::post('dentist/change-password',[DentistController::class,'ChangePassword'])->name('dentist.change-password');
+
+});
+
+Route::group(['middleware' => ['auth','center']] , function() {
+
+    Route::get('/radiology', [RadiologyController::class, 'show'])->name('show.center');
+
+});

@@ -570,8 +570,8 @@
         <div class="footer-col">
           <h4>Help</h4>
           <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Contct us</a></li>
+            <li><a href="{{route('faq')}}">FAQ</a></li>
+            <li><a href="{{route('contact')}}">Contct us</a></li>
             <li><a href="#">privacy policy</a></li>
           </ul>
         </div>

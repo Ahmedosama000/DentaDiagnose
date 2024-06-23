@@ -5,7 +5,8 @@
 @section('css')
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
-@vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+{{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
 @endsection
 

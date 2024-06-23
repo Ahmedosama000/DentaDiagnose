@@ -33,7 +33,11 @@
             <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
             <ul>
                 <li><a href="{{route('home')}}" class="active">Home</a></li>
-                <li><a href="{{route('show.dentist')}}">Services</a></li>
+                
+                <?php $type = Auth::check() ? Auth::user()->type : 'dentist' ?>
+
+                <li><a href='{{route("show.$type")}}'>Services</a></li>
+                
                 <li><a href="{{route('faq')}}">FAQ</a></li>
                 <li><a href="{{route('contact')}}">Contact us</a></li>
             </ul>
@@ -54,14 +58,6 @@
             <span>O</span>
             <h2>{{ Auth::user()->firstname ." ".Auth::user()->secondname}}</h2>
           </div>
-          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
-        </a>
-        
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
          @endguest
             
             {{-- <div class="buttons">
