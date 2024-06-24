@@ -17,4 +17,9 @@ class Request extends Model
     ];
 
     protected $table = 'request';
+
+    public function user(){
+
+        return $this->belongsTo(User::class,'den_id');
+    }
 }

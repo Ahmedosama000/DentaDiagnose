@@ -52,8 +52,7 @@ class DentistController extends Controller
         $reqs['den_id'] = $AuthID;
 
         $req = ModelsRequest::create($reqs);
-
-        return redirect()->route('show.dentist');
+        return redirect()->route('show.dentist')->with('success', 'Request sent Successfully');
     }
 
     public function ChangeInfo(ChangeDentistRequest $request){
@@ -73,7 +72,7 @@ class DentistController extends Controller
 
         User::find($AuthID)->update($NewData);
 
-        return redirect()->route('show.dentist');
+        return redirect()->route('show.dentist')->with('success', 'Info changed Successfully');
 
     }
 
@@ -91,9 +90,8 @@ class DentistController extends Controller
 
             $user->password = Hash::make($request->newpassword);
             $user->save();
-            return redirect()->route('show.dentist');
+            return redirect()->route('show.dentist')->with('success', 'Password changed Successfully');
         }
-        return redirect()->route('show.dentist');
     }
 
 }

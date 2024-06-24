@@ -45,4 +45,7 @@ Route::group(['middleware' => ['auth','center']] , function() {
 
     Route::get('/radiology', [RadiologyController::class, 'show'])->name('show.center');
 
+    Route::post('radiology/change',[RadiologyController::class,'ChangeInfo'])->name('center.change');
+    Route::post('radiology/change-password',[RadiologyController::class,'ChangePassword'])->name('center.change-password');
+
 });

@@ -4,8 +4,8 @@
 
 @section('content')
 
-
 <div class="services__page">
+
   <div class="sidebar">
     <div class="list">
       <div class="icon active" data-target="enter__xray">
@@ -111,6 +111,22 @@
     <div class="content enter__xray active">
       <div class="scan_xray">
         <div class="box">
+
+          @if (session('success'))
+          <div class="success-msg"
+
+          style="color: rgb(30, 175, 59);
+          background-color: #DFF2BF;
+          margin: 5px 0 ;
+          padding: 20px;
+          border-radius: 3px 3px 3px 3px;">
+
+            <i class="fa fa-check"></i>
+            {{session('success')}}
+          </div>
+
+          @endif
+
           <div class="drag-area">
             <div class="icon">
               <i class="fas fa-images"></i>
@@ -296,8 +312,6 @@
 
             @endforelse
             @endisset
-
-
 
           </div>
         </div>
@@ -810,7 +824,7 @@
                       <div class="radio form-group">
                         <div class="check">
                           <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
-                          <img src="{{ asset(" /images/visa.svg") }}" alt="" />
+                          <img src="{{ asset("/images/visa.svg") }}" alt="" />
                         </div>
                         <label for="CC-0">
                           <p>**** **** **** 4582</p>
@@ -820,7 +834,7 @@
                       <div class="radio form-group">
                         <div class="check">
                           <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
-                          <img src="{{ asset(" /images/paypal.svg") }}" alt="" />
+                          <img src="{{ asset("/images/paypal.svg") }}" alt="" />
                         </div>
                         <label for="CC-0">
                           <p>**** **** **** 4582</p>
@@ -832,7 +846,7 @@
                       <div class="radio form-group">
                         <div class="check">
                           <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
-                          <img src="{{ asset(" /images/mastercard.svg") }}" alt="" />
+                          <img src="{{ asset("/images/mastercard.svg") }}" alt="" />
                         </div>
                         <label for="CC-0">
                           <p>**** **** **** 4582</p>
@@ -842,7 +856,7 @@
                       <div class="radio form-group">
                         <div class="check">
                           <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
-                          <img src="{{ asset(" /images/google-pay.svg") }}" alt="" />
+                          <img src="{{ asset("/images/google-pay.svg") }}" alt="" />
                         </div>
                         <label for="CC-0">
                           <p>**** **** **** 4582</p>
@@ -959,7 +973,7 @@
       </div>
     </div>
     <div class="modal-content">
-      <img src="{{ asset(" /images/phone.png") }}" alt="Phone Image">
+      <img src="{{ asset("/images/phone.png") }}" alt="Phone Image">
       <p>A 6-digit code was sent to +201 ********* </p>
       <p>Enter it within 2 minutes</p>
       <input type="text" id="phone" placeholder="Enter your phone number">
@@ -985,7 +999,7 @@
       </div>
     </div>
     <div class="modal-content">
-      <img src="{{ asset(" /images/email.png") }}" alt="Email Image">
+      <img src="{{ asset("/images/email.png") }}" alt="Email Image">
       <p>Please enter your new email address</p>
       <input type="email" id="email" placeholder="Enter your Email Address">
       <input type="submit" value="Submit" class="btn" id="submit-email-btn">
@@ -1033,7 +1047,7 @@
   </div>
 </div>
 
-<script src="{{ asset(" /js/jquery.min.js") }}"></script>
+<script src="{{ asset("/js/jquery.min.js") }}"></script>
 
 <!-- <script defer src="js/googleapis.js"></script> -->
 @section('footer')
