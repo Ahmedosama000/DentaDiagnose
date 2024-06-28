@@ -38,6 +38,10 @@ Route::group(['middleware' => ['auth','dentist']] , function() {
     Route::post('dentist/request',[DentistController::class,'DenRequest'])->name('dentist.request');
     Route::post('dentist/change',[DentistController::class,'ChangeInfo'])->name('dentist.change');
     Route::post('dentist/change-password',[DentistController::class,'ChangePassword'])->name('dentist.change-password');
+    Route::post('dentist/reserve',[DentistController::class,'Reserving'])->name('reserve');
+    Route::get('reserve/info/{id}',[DentistController::class,'ReserveInfo'])->name('reserve.info');
+    Route::post('reserve/update/{id}',[DentistController::class,'Update'])->name('reserve.update');
+    Route::post('reserve/delete/{id}',[DentistController::class,'Destroy'])->name('reserve.destroy');
 
 });
 
@@ -47,5 +51,9 @@ Route::group(['middleware' => ['auth','center']] , function() {
 
     Route::post('radiology/change',[RadiologyController::class,'ChangeInfo'])->name('center.change');
     Route::post('radiology/change-password',[RadiologyController::class,'ChangePassword'])->name('center.change-password');
+    Route::post('/radiology/resend-request/{id}', [RadiologyController::class, 'ResendRequest'])->name('center.resend');
+    Route::get('/radiology/info/{id}', [RadiologyController::class, 'ShowDetails'])->name('center.info');
+    Route::post('/radiology/resend-report/{id}', [RadiologyController::class, 'ResendReport'])->name('report.resend');
+    Route::post('/radiology/send-report', [RadiologyController::class, 'SendReport'])->name('report.send');
 
 });

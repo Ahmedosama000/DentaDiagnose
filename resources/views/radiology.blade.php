@@ -218,7 +218,12 @@
                                 <div class="name__message">
                                     <h6>{{$request->user->firstname . " ".$request->user->secondname}}
                                         ({{$request->user->email}})</h6>
-                                    <p>{{$request->patient_email}}</p>
+                                    <p>{{'Patient : ' . $request->patient_email}}</p>
+                                    <br>
+                                    <form action="{{route('center.resend' , ['id' => $request->id])}}" method="post">
+                                        @csrf
+                                        <button class="btn">Send</button>
+                                    </form>
                                 </div>
                             </div>
                             {{-- <div class="date__unread">
@@ -233,96 +238,29 @@
 
                     </div>
                     <div class="archive">
+                        @forelse ( $archieves as $archieve )
+
                         <div class="message__row message">
                             <div class="img__name">
                                 <div class="img">
-                                    <img src="{{ asset("/images/d2.jpg") }}" alt="Photo" />
+                                    <img src="{{ asset("/images/d1.jpg") }}" alt="Photo" />
                                 </div>
                                 <div class="name__message">
-                                    <h6>Marcus Boscow</h6>
-                                    <p>Hello World!</p>
+                                    <h6>{{$archieve->user->firstname . " ".$archieve->user->secondname}}
+                                        ({{$archieve->user->email}})</h6>
+                                    <p>{{'Patient : '. $archieve->patient_email}}</p>
                                 </div>
                             </div>
-                            <div class="date__unread">
-                                <p class="date">Jan 08 2005</p>
+                            {{-- <div class="date__unread">
+                                <p class="date">{{$request->created_at}}</p>
                                 <p class="unread"></p>
-                            </div>
+                            </div> --}}
                         </div>
-                        <div class="message__row message">
-                            <div class="img__name">
-                                <div class="img">
-                                    <img src="{{ asset("/images/d3.jpg") }}" alt="Photo" />
-                                </div>
-                                <div class="name__message">
-                                    <h6>Marcus Boscow</h6>
-                                    <p>Hello World!</p>
-                                </div>
-                            </div>
-                            <div class="date__unread">
-                                <p class="date">Jan 08 2005</p>
-                                <p class="unread"></p>
-                            </div>
-                        </div>
-                        <div class="message__row message">
-                            <div class="img__name">
-                                <div class="img">
-                                    <img src="{{ asset("/images/d4.jpg") }}" alt="Photo" />
-                                </div>
-                                <div class="name__message">
-                                    <h6>Marcus Boscow</h6>
-                                    <p>Hello World!</p>
-                                </div>
-                            </div>
-                            <div class="date__unread">
-                                <p class="date">Jan 08 2005</p>
-                                <p class="unread"></p>
-                            </div>
-                        </div>
-                        <div class="message__row message">
-                            <div class="img__name">
-                                <div class="img">
-                                    <img src="{{ asset("/images/d5.png") }}" alt="Photo" />
-                                </div>
-                                <div class="name__message">
-                                    <h6>Marcus Boscow</h6>
-                                    <p>Hello World!</p>
-                                </div>
-                            </div>
-                            <div class="date__unread">
-                                <p class="date">Jan 08 2005</p>
-                                <p class="unread"></p>
-                            </div>
-                        </div>
-                        <div class="message__row message">
-                            <div class="img__name">
-                                <div class="img">
-                                    <img src="{{ asset("/images/d6.png") }}" alt="Photo" />
-                                </div>
-                                <div class="name__message">
-                                    <h6>Marcus Boscow</h6>
-                                    <p>Hello World!</p>
-                                </div>
-                            </div>
-                            <div class="date__unread">
-                                <p class="date">Jan 08 2005</p>
-                                <p class="unread"></p>
-                            </div>
-                        </div>
-                        <div class="message__row message">
-                            <div class="img__name">
-                                <div class="img">
-                                    <img src="{{ asset("/images/d7.jpg") }}" alt="Photo" />
-                                </div>
-                                <div class="name__message">
-                                    <h6>Marcus Boscow</h6>
-                                    <p>Hello World!</p>
-                                </div>
-                            </div>
-                            <div class="date__unread">
-                                <p class="date">Jan 08 2005</p>
-                                <p class="unread"></p>
-                            </div>
-                        </div>
+
+                        @empty
+
+                        @endforelse
+
                     </div>
                 </div>
                 <div class="details">
@@ -333,10 +271,11 @@
                         <img src="{{ asset("/images/d8.png") }}" alt="logo" class="person" />
                     </div>
                     <div>
-                        <h4 class="custom__heading">{{Auth()->user()->firstname . " " .Auth()->user()->secondname}}</h4>
-                        <p>Please Re-send The Patients X-ray</p>
+                        {{-- <h4 class="custom__heading">{{Auth()->user()->firstname . " " .Auth()->user()->secondname}}
+                        </h4> --}}
+                        <p class="custom__heading">Re-Send The Patients X-ray</p>
                     </div>
-                    <div>
+                    {{-- <div>
                         <form method="post">
                             <div>
                                 <input type="text" name="email" placeholder="Full Name or Email" />
@@ -355,7 +294,7 @@
                                 <input type="submit" value="Send" class="btn" />
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -380,14 +319,21 @@
                                 <div class="name__message">
                                     <h6>{{$report->full_name}}</h6>
                                     <p>{{$report->email}}</p>
+                                    <p class="date">{{$report->created_at}}</p>
                                 </div>
                             </div>
-                            <div class="date__unread">
-                                <p class="date">{{$report->date}}</p>
-                                <p class="unread"></p>
-                            </div>
-                        </div>
+                            <a style="text-decoration: none ; display:inline" href="{{'/radiology/info/' . $report->id }}"
+                                class="btn">Show</a>
 
+                                <form action="{{route('report.resend' , ['id' => $report->id])}}" method="post">
+                                    @csrf
+                                    <button style="display: inline" class="btn">Send</button>
+                                </form>
+
+                            {{-- <div class="date__unread">
+                                <p class="unread"></p>
+                            </div> --}}
+                        </div>
                         @empty
 
                         @endforelse
@@ -399,32 +345,39 @@
                         <img src="{{ asset("/images/logo.svg") }}" alt="logo" />
                     </div>
                     <div>
-                        <form method="post">
+                        @isset($info)
+                        <form>
                             <div>
-                                <input type="text" name="email" placeholder="Full Name or Email" />
+                                <input value="{{$info->email}}" type="text" name="email"
+                                    placeholder="Full Name or Email" />
                             </div>
                             <div>
-                                <input type="text" name="phone" placeholder="Phone Number" />
+                                <input value="{{$info->phone}}" type="text" name="phone" placeholder="Phone Number" />
                             </div>
                             <div class="row">
-                                <input type="text" name="age" id="age" placeholder="Age" />
-                                <input type="date" name="date" id="date" />
+                                <input value="{{$info->age}}" type="text" name="age" id="age" placeholder="Age" />
+                                {{-- <input value="{{$info->date}}" type="date" name="date" id="date" /> --}}
                             </div>
                             <div>
-                                <input type="text" name="dname" id="dname" placeholder="Doctor Name or Email" />
+                                <input value="{{$doctor_mail->email}}" type="text" name="dname" id="dname"
+                                    placeholder="Doctor Name or Email" />
                             </div>
                         </form>
-                    </div>
-                    <div class="x_ray">
-                        <div class="box">
-                            <img src="{{ asset("/images/x-ray.png") }}" alt="xray" />
+                        <div class="x_ray">
+                            <div class="box">
+                                <img src="{{ asset("/images/x-ray.png") }}" alt="xray" />
+                            </div>
+                            <div class="box">
+                                <img src="{{ asset("/images/x-ray.png") }}" alt="xray" />
+                            </div>
                         </div>
-                        <div class="box">
-                            <img src="{{ asset("/images/x-ray.png") }}" alt="xray" />
-                        </div>
+                        @endisset
+                        @empty($info)
+
+                        @endempty
                     </div>
                     <div class="radiologyBtn">
-                        <button class="btn">Send</button>
+                        {{-- <button class="btn">Send</button> --}}
                     </div>
                 </div>
             </div>
@@ -499,24 +452,36 @@
                             <img src="{{ asset("/images/logo.svg") }}" alt="">
                         </div>
                         <div>
-                            <form method="post">
+                            <form method="post" action="{{route('report.send')}}">
+                                @csrf
                                 <div>
-                                    <input type="text" name="email" placeholder="Full Name or Email" />
+                                    <input type="text" name="name" placeholder="Patient Name" />
                                 </div>
                                 <div>
-                                    <input type="text" name="phone" placeholder="Phone Number" />
+                                    <input type="email" name="email" placeholder="Patient Email" />
+                                </div>
+                                <div>
+                                    <input type="number" name="phone" placeholder="Phone Number" />
                                 </div>
                                 <div class="row">
-                                    <input type="text" name="age" id="age" placeholder="Age" />
-                                    <input type="date" name="date" id="date" />
+                                    <input type="number" name="age" id="age" placeholder="Age" />
+                                    {{-- <input type="date" name="date" id="date" /> --}}
                                 </div>
                                 <div>
-                                    <input type="text" name="dname" id="dname" placeholder="Doctor Name or Email" />
+                                    <input type="email" name="dremail" id="dname" placeholder="Doctor Email" />
                                 </div>
-                            </form>
                         </div>
                     </div>
-
+                    <div class="sendBtn">
+                        <button class="btn">
+                            <span>Send</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path
+                                    d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
                     <div class="reportBtn">
                         <button class="btn">
                             <span>Report</span>
@@ -530,15 +495,6 @@
                         c-16.2,0-29.6-12.8-30.7-28.7c0.1-1.1,0.1-2.1,0-3.2C261.6,90.9,261.6,90.6,261.6,90.3z M569.2,382L391,560.2
                         c-5.8,5.8-13.6,9-21.8,9s-16-3.2-21.8-9L246.2,458.9c-12-12-12-31.5,0-43.5c12-12,31.5-12,43.5,0l79.6,79.5l156.5-156.5
                         c12-12,31.5-12,43.5,0C581.2,350.5,581.2,370,569.2,382z" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="sendBtn">
-                        <button class="btn">
-                            <span>Send</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                <path
-                                    d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480V396.4c0-4 1.5-7.8 4.2-10.7L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z" />
                             </svg>
                         </button>
                     </div>
@@ -682,21 +638,24 @@
 
                                         @csrf
                                         <div>
-                                          <label for="currentPassword">Current Password</label>
-                                          <input name="password" type="password" placeholder="Enter Current Password" id="currentPassword" />
+                                            <label for="currentPassword">Current Password</label>
+                                            <input name="password" type="password" placeholder="Enter Current Password"
+                                                id="currentPassword" />
                                         </div>
                                         <div>
-                                          <label for="newPassword">New Password</label>
-                                          <input name="newpassword" type="password" placeholder="Enter New Password" id="newPassword" />
+                                            <label for="newPassword">New Password</label>
+                                            <input name="newpassword" type="password" placeholder="Enter New Password"
+                                                id="newPassword" />
                                         </div>
                                         <div>
-                                          <label for="renterNewPassword">Confirm New Password</label>
-                                          <input name="newpassword_confirmation" type="password" placeholder="Confirm New Password" id="renterNewPassword" />
+                                            <label for="renterNewPassword">Confirm New Password</label>
+                                            <input name="newpassword_confirmation" type="password"
+                                                placeholder="Confirm New Password" id="renterNewPassword" />
                                         </div>
                                         <div>
-                                          <input type="submit" value="Update Password" class="btn" />
+                                            <input type="submit" value="Update Password" class="btn" />
                                         </div>
-                                      </form>
+                                    </form>
                                 </div>
                             </div>
                             <div class="contactInformation">
@@ -1006,7 +965,7 @@
 </div>
 
 <!-- Send Modal -->
-<div class="sendModal" id="modalSend">
+{{-- <div class="sendModal" id="modalSend">
     <div id="overlaySend" class="modal-overlay"></div>
     <div class="modal">
         <div class="modalHeader">
@@ -1017,6 +976,7 @@
                         fill="black" />
                 </svg>
             </div>
+
             <div class="modal-title">
                 <h1>Send Report</h1>
             </div>
@@ -1027,111 +987,12 @@
             </div>
             <div class="recent__modal">
                 <h3>Recent</h3>
-                <div class="message__row message">
-                    <div class="img__name">
-                        <div class="img">
-                            <img src="{{ asset("/images/d7.jpg") }}" alt="Photo" />
-                        </div>
-                        <div class="name__message">
-                            <h6>Marcus Boscow</h6>
-                            <p>593-380-4610</p>
-                        </div>
-                    </div>
-                    <div class="date__unread">
-                        <p class="date">Sat Jan 08 2005 00:35:00 </p>
-                    </div>
-                </div>
-                <div class="message__row message">
-                    <div class="img__name">
-                        <div class="img">
-                            <img src="{{ asset("/images/d8.png") }}" alt="Photo" />
-                        </div>
-                        <div class="name__message">
-                            <h6>Marcus Boscow</h6>
-                            <p>593-380-4610</p>
-                        </div>
-                    </div>
-                    <div class="date__unread">
-                        <p class="date">Sat Jan 08 2005 00:35:00 </p>
-                    </div>
-                </div>
             </div>
             <div class="recommended__modal recent__modal">
-                <h3>Recommended Dentist</h3>
-                <div class="message__row message">
-                    <div class="img__name">
-                        <div class="img">
-                            <img src="{{ asset("/images/d5.png") }}" alt="Photo" />
-                        </div>
-                        <div class="name__message">
-                            <h6>Marcus Boscow</h6>
-                            <p>593-380-4610</p>
-                        </div>
-                    </div>
-                    <div class="date__unread">
-                        <p class="date">Sat Jan 08 2005 00:35:00 </p>
-                    </div>
-                </div>
-                <div class="message__row message">
-                    <div class="img__name">
-                        <div class="img">
-                            <img src="{{ asset("/images/d6.png") }}" alt="Photo" />
-                        </div>
-                        <div class="name__message">
-                            <h6>Marcus Boscow</h6>
-                            <p>593-380-4610</p>
-                        </div>
-                    </div>
-                    <div class="date__unread">
-                        <p class="date">Sat Jan 08 2005 00:35:00 </p>
-                    </div>
-                </div>
-                <div class="message__row message">
-                    <div class="img__name">
-                        <div class="img">
-                            <img src="{{ asset("/images/d3.jpg") }}" alt="Photo" />
-                        </div>
-                        <div class="name__message">
-                            <h6>Marcus Boscow</h6>
-                            <p>593-380-4610</p>
-                        </div>
-                    </div>
-                    <div class="date__unread">
-                        <p class="date">Sat Jan 08 2005 00:35:00 </p>
-                    </div>
-                </div>
-                <div class="message__row message">
-                    <div class="img__name">
-                        <div class="img">
-                            <img src="{{ asset("/images/d3.jpg") }}" alt="Photo" />
-                        </div>
-                        <div class="name__message">
-                            <h6>Marcus Boscow</h6>
-                            <p>593-380-4610</p>
-                        </div>
-                    </div>
-                    <div class="date__unread">
-                        <p class="date">Sat Jan 08 2005 00:35:00 </p>
-                    </div>
-                </div>
-                <div class="message__row message">
-                    <div class="img__name">
-                        <div class="img">
-                            <img src="{{ asset("/images/d3.jpg") }}" alt="Photo" />
-                        </div>
-                        <div class="name__message">
-                            <h6>Marcus Boscow</h6>
-                            <p>593-380-4610</p>
-                        </div>
-                    </div>
-                    <div class="date__unread">
-                        <p class="date">Sat Jan 08 2005 00:35:00 </p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <script src="{{ asset("/js/jquery.min.js") }}"></script>
 

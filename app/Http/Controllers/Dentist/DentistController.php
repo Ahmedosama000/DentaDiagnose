@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangeDentistRequest;
 use App\Http\Requests\DentistRequest;
+use App\Http\Requests\ReserveRequest;
 use App\Models\Request as ModelsRequest;
+use App\Models\Reserve;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,8 +24,9 @@ class DentistController extends Controller
 
         $data = Ray::query()->where('dent_id',$AuthID)->get();
         $centers = User::query()->where('type','center')->get();
+        $reserves = Reserve::query()->where('den_id',$AuthID)->get();
 
-        return view('services',compact('data','centers'));
+        return view('services',compact('data','centers','reserves'));
 
     }
 
@@ -31,13 +34,16 @@ class DentistController extends Controller
 
         $AuthID = Auth()->user()->id;
 
+        $centers = User::query()->where('type','center')->get();
+        $reserves = Reserve::query()->where('den_id',$AuthID)->get();
+
         $info = Ray::query()->where('id',$id)->get()[0];
         $data = Ray::query()->where('dent_id',$AuthID)->get();
         $doctor_mail = User::find($AuthID);
 
         if ($info->dent_id == $AuthID){
 
-            return view('services',compact('info','data','doctor_mail'));
+            return view('services',compact('info','data','doctor_mail','reserves','centers'));
 
         }
 
@@ -92,6 +98,77 @@ class DentistController extends Controller
             $user->save();
             return redirect()->route('show.dentist')->with('success', 'Password changed Successfully');
         }
+        return redirect()->route('show.dentist');
+    }
+
+    public function Reserving(ReserveRequest $request){
+
+        $AuthID = Auth()->user()->id;
+
+        $data = [
+
+            'name' => $request->name,
+            'email_patient' => $request->email,
+            'age' => $request->age,
+            'phone_patient' => $request->phone,
+            'message' => $request->message,
+            'den_id' => $AuthID,
+        ];
+        Reserve::create($data);
+        return redirect()->route('show.dentist')->with('success', 'Reserve added Successfully');
+    }
+
+    public function ReserveInfo($id){
+
+        $AuthID = Auth()->user()->id;
+        $ReservedData = Reserve::find($id);
+        $data = Ray::query()->where('dent_id',$AuthID)->get();
+        $centers = User::query()->where('type','center')->get();
+        $reserves = Reserve::query()->where('den_id',$AuthID)->get();
+
+        if ($AuthID == $ReservedData->den_id){
+
+            return view('services',compact('ReservedData','data','centers','reserves'));
+        }
+
+        return redirect()->route('show.dentist');
+
+    }
+
+    public function Update(Request $request , $id){
+
+        $request->validate([
+            'name' => ['required','string','max:100'],
+            'message' => ['string'],
+        ]);
+
+        $AuthID = Auth()->user()->id;
+        $ReservedData = Reserve::find($id);
+
+        if ($AuthID == $ReservedData->den_id){
+
+            $ReservedData->name = $request->name;
+            $ReservedData->message = $request->message;
+
+            $ReservedData->save();
+            return redirect()->route('show.dentist')->with('success', 'Reserve updated Successfully');
+
+        }
+        return redirect()->route('show.dentist');
+    }
+
+    public function Destroy($id){
+
+        $AuthID = Auth()->user()->id;
+        $ReservedData = Reserve::find($id);
+
+        if ($AuthID == $ReservedData->den_id){
+
+            $ReservedData->delete();
+            return redirect()->route('show.dentist')->with('success', 'Reserve deleted Successfully');
+        }
+        return redirect()->route('show.dentist');
+
     }
 
 }

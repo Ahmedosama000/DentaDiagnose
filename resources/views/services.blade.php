@@ -113,9 +113,7 @@
         <div class="box">
 
           @if (session('success'))
-          <div class="success-msg"
-
-          style="color: rgb(30, 175, 59);
+          <div class="success-msg" style="color: rgb(30, 175, 59);
           background-color: #DFF2BF;
           margin: 5px 0 ;
           padding: 20px;
@@ -212,7 +210,7 @@
                 </div>
               </div>
               <div class="date__unread">
-                <p class="date">{{$user->date}}</p>
+                <p class="date">{{$user->created_at}}</p>
                 {{-- <p class="unread"></p> --}}
                 <a style="text-decoration: none" href="{{'/dentist/info/' . $user->id }}"
                   class="btn my-2 btn-primary">Show</a>
@@ -232,7 +230,7 @@
           <div>
 
             @isset($info)
-            <form method="post">
+            <form>
               <div>
                 <input value="{{$info->email}}" type="text" name="email" placeholder="Full Name or Email" />
               </div>
@@ -241,7 +239,7 @@
               </div>
               <div class="row">
                 <input value="{{$info->age}}" type="text" name="age" id="age" placeholder="Age" />
-                <input value="{{$info->date}}" type="date" name="date" id="date" />
+                {{-- <input value="{{$info->date}}" type="date" name="date" id="date" /> --}}
               </div>
               <div>
                 <input value="{{$doctor_mail->email}}" type="text" name="dname" id="dname"
@@ -250,7 +248,7 @@
             </form>
             @endisset
             @empty($info)
-            <form method="post">
+            <form>
               <div>
                 <input value="" type="text" name="email" placeholder="Full Name or Email" />
               </div>
@@ -259,7 +257,7 @@
               </div>
               <div class="row">
                 <input value="" type="text" name="age" id="age" placeholder="Age" />
-                <input value="" type="date" name="date" id="date" />
+                {{-- <input value="" type="date" name="date" id="date" /> --}}
               </div>
               <div>
                 <input value="" type="text" name="dname" id="dname" placeholder="Doctor Name or Email" />
@@ -291,7 +289,7 @@
           <div>
 
             @isset($centers)
-              
+
             @forelse ( $centers as $center )
             <div class="message__row message">
               <div class="img__name">
@@ -348,611 +346,500 @@
     <div class="content calender inactive">
       <div class="row">
         <div class="row new__send">
-          <button class="btn" id="newBtn">New<i class="fa-solid fa-plus"></i></button>
-          <button class="btn">Send<i class="fa-solid fa-bell"></i></button>
+          <button style="width: 100%" class="btn" id="newBtn">New<i class="fa-solid fa-plus"></i></button>
+          {{-- <button class="btn">Send<i class="fa-solid fa-bell"></i></button> --}}
         </div>
         <div class="search__container">
-          <input type="date" name="date" />
+          {{-- <input type="date" name="date" /> --}}
         </div>
       </div>
       <div class="row">
         <div class="reports patients">
           <div>
             <div class="patients__header">
-              <div class="total item active">
+              <div style="width: 100%" class="total item active">
                 <h4>Total</h4>
-                <p>50</p>
-              </div>
-              <div class="pending item">
-                <h4>Pending</h4>
-                <p>50</p>
-              </div>
-              <div class="finish item">
-                <h4>Finished</h4>
-                <p>50</p>
+                <p>{{sizeof($reserves)}}</p>
               </div>
             </div>
-            <div class="message__row message">
+
+            @forelse ( $reserves as $reserve )
+
+            <div style="margin-top: 10px" class="message__row message">
               <div class="img__name">
                 <div class="name__message">
-                  <h6>Patients Name</h6>
-                  <p>State</p>
+                  <h6>{{$reserve->name}}</h6>
+                  <p>{{$reserve->email_patient}}</p>
+                  <p>{{$reserve->message}}</p>
                 </div>
               </div>
               <div class="date__unread date__patients">
                 <div>
-                  <p class="date">Jan 08 2005</p>
-                  <p class="date">08:33 pm</p>
+                  <p class="date">{{$reserve->created_at}}</p>
+                  {{-- <p class="date">08:33 pm</p> --}}
                 </div>
                 <div>
-                  <input type="checkbox" class="checkbox" />
+                  <a style="text-decoration: none" href="{{'/reserve/info/' . $reserve->id }}"
+                    class="btn my-2 btn-primary">Show</a>
+                  {{-- <input type="checkbox" class="checkbox" /> --}}
                 </div>
               </div>
             </div>
-            <div class="message__row message">
-              <div class="img__name">
-                <div class="name__message">
-                  <h6>Patients Name</h6>
-                  <p>State</p>
-                </div>
+            @empty
+
+        @endforelse
+
+      </div>
+    </div>
+    <div class="details information">
+      <div>
+        <h3>Information</h3>
+      </div>
+      <div>
+        @isset($ReservedData)
+          
+        <form action="{{route('reserve.update' , ['id' => $ReservedData->id])}}" method="post">
+          
+          @csrf
+          <div>
+            <input value="{{$ReservedData->email_patient}}" type="text" name="email" placeholder="Email" disabled />
+          </div>
+          <div>
+            <input value="{{$ReservedData->name}}" type="text" name="name" placeholder="Name" />
+          </div>
+          <div>
+            <textarea name="message" id="message" placeholder="Message">{{$ReservedData->message}}</textarea>
+          </div>
+          <div class="row">
+            <button class="btn">
+              Confirm<i class="fa-solid fa-circle-check"></i>
+            </button>
+        </form>
+
+        <form action="{{route('reserve.destroy' , ['id' => $ReservedData->id])}}" method="post">
+          @csrf
+          <button style="width: auto" class="btn deleteBtn">
+          Delete<i class="fa-solid fa-trash"></i>
+        </button>
+        </form>
+        @endisset
+        @empty($ReservedData)
+
+          <div>
+            <input type="text" name="email" placeholder="Email" />
+          </div>
+          <div>
+            <input type="text" name="name" placeholder="Name" />
+          </div>
+          <div>
+            <textarea name="message" id="message" placeholder="Message"></textarea>
+          </div>
+          <div class="row">
+            <button class="btn">
+              Confirm<i class="fa-solid fa-circle-check"></i>
+            </button>
+
+            <button class="btn deleteBtn">
+          Delete<i class="fa-solid fa-trash"></i>
+        </button>
+        @endempty
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content settings inactive">
+  <div class="row">
+    <div class="reports patients">
+      <div>
+        <h3>Settings</h3>
+      </div>
+      <div class="search__container">
+        <input type="text" name="search" placeholder="Search" />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="list menu">
+        <div class="profile list__items" data-target="profile">
+          <i class="fa-solid fa-user"></i><span>Profile</span>
+        </div>
+        <div class="security list__items" data-target="security">
+          <i class="fa-solid fa-shield-halved"></i><span>Security</span>
+        </div>
+        <div class="subscription list__items" data-target="subscription">
+          <i class="fa-solid fa-money-check-dollar"></i><span>Subscription</span>
+        </div>
+        <div class="delete__account list__items" data-target="delete__account">
+          <i class="fa-solid fa-user-xmark"></i><span>Delete Account</span>
+        </div>
+      </div>
+    </div>
+    <div class="details information">
+      <div>
+        <div class="cont profile active">
+          <div>
+            <h3>Information</h3>
+          </div>
+          <div class="logo doctor">
+            <div>
+              <img src="{{ asset("/images/d1.jpg") }}" alt="Photo" class="person" />
+              <i class="fa-solid fa-camera"></i>
+            </div>
+          </div>
+          <div>
+
+            <form method="post" action="{{route('dentist.change')}}">
+              @csrf
+              <h4>Personal Information</h4>
+              <div>
+                <label for="firstname">First Name</label>
+                <p>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <input type="text" name="firstname" value="{{Auth()->user()->firstname}}" id="name" />
+                </p>
               </div>
-              <div class="date__unread date__patients">
-                <div>
-                  <p class="date">Jan 08 2005</p>
-                  <p class="date">08:33 pm</p>
+              <div>
+                <label for="name">Second Name</label>
+                <p>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <input type="text" name="secondname" value={{Auth()->user()->secondname}} id="name" />
+                </p>
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <p>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <input type="text" name="email" value="{{Auth()->user()->email}}" id="email" />
+                </p>
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <p>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <input type="text" name="phone" value="{{Auth()->user()->phonenumber}}" id="phone" />
+                </p>
+              </div>
+              <h4>Address</h4>
+              <div>
+                <label for="governorate">Governorate</label>
+                <p>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <input type="text" name="governorate" value="{{Auth()->user()->governate}}" id="governorate" />
+                </p>
+              </div>
+              <div>
+                <label for="region">Region</label>
+                <p>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <input type="text" name="region" value="{{Auth()->user()->region}}" id="region" />
+                </p>
+              </div>
+              <div>
+                <label for="street">Street</label>
+                <p>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <input type="text" name="street" value="{{Auth()->user()->youraddress}}" id="street" />
+                </p>
+              </div>
+
+              <div>
+                <input type="submit" value="Save" class="btn my-2 btn-primary" />
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <div class="cont security inactive">
+          <div>
+            <h3>Security</h3>
+          </div>
+          <div class="list change__contact">
+            <div class="goToChangePass">
+              <i class="fa-solid fa-unlock-keyhole"></i>Change Password
+            </div>
+            <div class="goToContactInformation">
+              <i class="fa-solid fa-address-book"></i>Contact
+              Information
+            </div>
+          </div>
+          <div class="changePass">
+            <div class="changePassHeading">
+              <div class="titleRow">
+                <div class="backIcon">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24"
+                    style="enable-background:new 0 0 24 24;" xml:space="preserve">
+                    <path class="st0" d="M17,2H7C4.2,2,2,4.2,2,7v10c0,2.8,2.2,5,5,5h10c2.8,0,5-2.2,5-5V7C22,4.2,19.8,2,17,2z M15,13h-3.6l1.3,1.3
+                            c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0l-3-3c-0.4-0.4-0.4-1,0-1.4l3-3c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4L11.4,11H15
+                            c0.5,0,1,0.5,1,1S15.5,13,15,13z" />
+                  </svg>
                 </div>
-                <div>
-                  <input type="checkbox" class="checkbox" />
-                </div>
+                <h4>Change Password</h4>
               </div>
             </div>
-            <div class="message__row message">
-              <div class="img__name">
-                <div class="name__message">
-                  <h6>Patients Name</h6>
-                  <p>State</p>
-                </div>
-              </div>
-              <div class="date__unread date__patients">
+            <div>
+
+              <form method="post" action="{{route('dentist.change-password')}}">
+
+                @csrf
                 <div>
-                  <p class="date">Jan 08 2005</p>
-                  <p class="date">08:33 pm</p>
+                  <label for="currentPassword">Current Password</label>
+                  <input name="password" type="password" placeholder="Enter Current Password" id="currentPassword" />
                 </div>
                 <div>
-                  <input type="checkbox" class="checkbox" />
+                  <label for="newPassword">New Password</label>
+                  <input name="newpassword" type="password" placeholder="Enter New Password" id="newPassword" />
                 </div>
+                <div>
+                  <label for="renterNewPassword">Confirm New Password</label>
+                  <input name="newpassword_confirmation" type="password" placeholder="Confirm New Password"
+                    id="renterNewPassword" />
+                </div>
+                <div>
+                  <input type="submit" value="Update Password" class="btn" />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="contactInformation">
+            <div class="changePassHeading">
+              <div class="titleRow">
+                <div class="backIcon">
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24"
+                    style="enable-background:new 0 0 24 24;" xml:space="preserve">
+                    <path class="st0" d="M17,2H7C4.2,2,2,4.2,2,7v10c0,2.8,2.2,5,5,5h10c2.8,0,5-2.2,5-5V7C22,4.2,19.8,2,17,2z M15,13h-3.6l1.3,1.3
+                            c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0l-3-3c-0.4-0.4-0.4-1,0-1.4l3-3c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4L11.4,11H15
+                            c0.5,0,1,0.5,1,1S15.5,13,15,13z" />
+                  </svg>
+                </div>
+                <h4>Contact Information</h4>
               </div>
             </div>
-            <div class="message__row message">
-              <div class="img__name">
-                <div class="name__message">
-                  <h6>Patients Name</h6>
-                  <p>State</p>
+            <div class="contact__content">
+              <div class="contactOne">
+                <div>
+                  <i class="fa-solid fa-envelope"></i>
+                  <span>{{Auth()->user()->email}}</span>
+                </div>
+
+                {{-- <div>
+                  <i class="fa-solid fa-ellipsis-vertical options" id="optionOne"></i>
+                </div>
+                <div class="dropDown">
+                  <button class="btn dropDownBtn dropDownOne">
+                    Delete
+                  </button>
+                </div> --}}
+
+              </div>
+              <div class="contactOne contactTwo">
+                <div>
+                  <i class="fa-solid fa-phone"></i>
+                  <span>{{Auth()->user()->phonenumber}}</span>
+                </div>
+
+                {{-- <div>
+                  <i class="fa-solid fa-ellipsis-vertical options" id="optionTwo"></i>
+                </div>
+                <div class="dropDown">
+                  <button class="btn dropDownBtn dropDownTwo">
+                    Delete
+                  </button>
+                </div> --}}
+
+              </div>
+              {{-- <div class="contactOne contactThree">
+                <div>
+                  <i class="fa-solid fa-ellipsis-vertical options" id="optionThree"></i>
+                </div>
+                <div class="dropDown">
+                  <button class="btn dropDownBtn dropDownThree">
+                    Delete
+                  </button>
                 </div>
               </div>
-              <div class="date__unread date__patients">
-                <div>
-                  <p class="date">Jan 08 2005</p>
-                  <p class="date">08:33 pm</p>
+              <div class="contactOne contactFour">
+                <div id="addContact">
+                  <i class="fa-solid fa-square-plus"></i>
+                  <span>Add New Contact</span>
                 </div>
-                <div>
-                  <input type="checkbox" class="checkbox" />
+                <div class="newEmailAndNumber">
+                  <p id="openAddNumber">Add New Phone Number</p>
+                  <p id="openAddEmail">Add New Email Address</p>
                 </div>
-              </div>
+              </div> --}}
+
             </div>
-            <div class="message__row message">
-              <div class="img__name">
-                <div class="name__message">
-                  <h6>Patients Name</h6>
-                  <p>State</p>
-                </div>
+          </div>
+        </div>
+        <div class="cont subscription inactive">
+          <div>
+            <h3>Subscription</h3>
+          </div>
+          <div class="row">
+            <div class="premium">
+              <h6>Premium</h6>
+              <p class="dis">20% save</p>
+              <div>
+                50$
+                <span>Per 3 Months</span>
               </div>
-              <div class="date__unread date__patients">
-                <div>
-                  <p class="date">Jan 08 2005</p>
-                  <p class="date">08:33 pm</p>
-                </div>
-                <div>
-                  <input type="checkbox" class="checkbox" />
-                </div>
-              </div>
+              <button class="btn">Subscribe</button>
             </div>
-            <div class="message__row message">
-              <div class="img__name">
-                <div class="name__message">
-                  <h6>Patients Name</h6>
-                  <p>State</p>
-                </div>
+            <div class="basic">
+              <h6>Basic</h6>
+              <p class="dis">0% save</p>
+              <div>
+                10$
+                <span>Per Month</span>
               </div>
-              <div class="date__unread date__patients">
-                <div>
-                  <p class="date">Jan 08 2005</p>
-                  <p class="date">08:33 pm</p>
-                </div>
-                <div>
-                  <input type="checkbox" class="checkbox" />
-                </div>
-              </div>
+              <button class="btn">Subscribe</button>
             </div>
-            <div class="message__row message">
-              <div class="img__name">
-                <div class="name__message">
-                  <h6>Patients Name</h6>
-                  <p>State</p>
-                </div>
+            <div class="enterprise">
+              <h6>Enterprise</h6>
+              <p class="dis">50% save</p>
+              <div>
+                100$
+                <span>Per Year</span>
               </div>
-              <div class="date__unread date__patients">
-                <div>
-                  <p class="date">Jan 08 2005</p>
-                  <p class="date">08:33 pm</p>
-                </div>
-                <div>
-                  <input type="checkbox" class="checkbox" />
-                </div>
-              </div>
+              <button class="btn">Renew</button>
             </div>
-            <div class="message__row message">
-              <div class="img__name">
-                <div class="name__message">
-                  <h6>Patients Name</h6>
-                  <p>State</p>
+          </div>
+          <div class="saved__payment">
+            <div class="row">
+              <div class="payment">
+                <h4 class="text-center">Saved Payment Methods</h4>
+                <div class="col">
+                  <div class="radio form-group">
+                    <div class="check">
+                      <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
+                      <img src="{{ asset("/images/visa.svg") }}" alt="" />
+                    </div>
+                    <label for="CC-0">
+                      <p>**** **** **** 4582</p>
+                      <p>Visa</p>
+                    </label>
+                  </div>
+                  <div class="radio form-group">
+                    <div class="check">
+                      <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
+                      <img src="{{ asset("/images/paypal.svg") }}" alt="" />
+                    </div>
+                    <label for="CC-0">
+                      <p>**** **** **** 4582</p>
+                      <p>Visa</p>
+                    </label>
+                  </div>
                 </div>
-              </div>
-              <div class="date__unread date__patients">
-                <div>
-                  <p class="date">Jan 08 2005</p>
-                  <p class="date">08:33 pm</p>
+                <div class="col">
+                  <div class="radio form-group">
+                    <div class="check">
+                      <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
+                      <img src="{{ asset("/images/mastercard.svg") }}" alt="" />
+                    </div>
+                    <label for="CC-0">
+                      <p>**** **** **** 4582</p>
+                      <p>Visa</p>
+                    </label>
+                  </div>
+                  <div class="radio form-group">
+                    <div class="check">
+                      <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
+                      <img src="{{ asset("/images/google-pay.svg") }}" alt="" />
+                    </div>
+                    <label for="CC-0">
+                      <p>**** **** **** 4582</p>
+                      <p>Visa</p>
+                    </label>
+                  </div>
                 </div>
-                <div>
-                  <input type="checkbox" class="checkbox" />
-                </div>
-              </div>
-            </div>
-            <div class="message__row message">
-              <div class="img__name">
-                <div class="name__message">
-                  <h6>Patients Name</h6>
-                  <p>State</p>
-                </div>
-              </div>
-              <div class="date__unread date__patients">
-                <div>
-                  <p class="date">Jan 08 2005</p>
-                  <p class="date">08:33 pm</p>
-                </div>
-                <div>
-                  <input type="checkbox" class="checkbox" />
+                <div class="form-group col-sm-12">
+                  <div class="col-sm-12 field" id="update-pledge-validate">
+                    <input type="button" class="btn btn-block btn-primary" id="submitUpdatePledge"
+                      value="New Payment Method" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="details information">
+        <div class="cont delete__account inactive">
           <div>
-            <h3>Information</h3>
+            <h3>Delete Account</h3>
+          </div>
+          <div class="email">
+            <h6>This Will Delete Your Account Permanentiy</h6>
+            <p>Stephany_Daniel@gmail.com</p>
+          </div>
+          <div class="bullets">
+            <h6>This Following Items Can’t Be Restored :</h6>
+            <p>Optio dolore et tempore temporibus repudiandae voluptas.</p>
+            <p>Optio dolore et tempore temporibus repudiandae voluptas.</p>
+            <p>Optio dolore et tempore temporibus repudiandae voluptas.</p>
+          </div>
+          <div class="reason">
+            <h6>Please Tell us Why You’re Deleting Your Account <span>Requried</span></h6>
+            <div class="inputRadio">
+              <div>
+                <input type="radio" id="reason1" name="reasons" checked />
+                <label for="reason1">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
+              </div>
+              <div>
+                <input type="radio" id="reason2" name="reasons" />
+                <label for="reason2">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
+              </div>
+              <div>
+                <input type="radio" id="reason3" name="reasons" />
+                <label for="reason3">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
+              </div>
+              <div>
+                <input type="radio" id="reason4" name="reasons" />
+                <label for="reason4">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
+              </div>
+              <div>
+                <input type="radio" id="reason5" name="reasons" />
+                <label for="reason5">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
+              </div>
+            </div>
+
           </div>
           <div>
-            <form method="post">
+            <form>
               <div>
-                <input type="text" name="email" placeholder="Full Name or Email" />
-              </div>
-              <div>
-                <input type="text" name="phone" placeholder="Phone Number" />
-              </div>
-              <div class="row">
-                <input type="text" name="age" id="age" placeholder="Age" />
-                <input type="date" name="date" id="date" />
+                <label for="password">To Confirm This Type " Password "</label>
               </div>
               <div>
-                <input type="text" name="dname" id="dname" placeholder="Doctor Name or Email" />
+                <input type="password" id="password" />
               </div>
-              <div>
-                <textarea name="message" id="message" placeholder="Message"></textarea>
-              </div>
-              <div class="row">
-                <button class="btn">
-                  Confirm<i class="fa-solid fa-circle-check"></i>
-                </button>
-                <button class="btn deleteBtn">
-                  Delete<i class="fa-solid fa-trash"></i>
-                </button>
+              <div class="signInSubmit">
+                <input type="submit" value="Delete Account" id="signUpSubmit" />
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
-    <div class="content settings inactive">
-      <div class="row">
-        <div class="reports patients">
-          <div>
-            <h3>Settings</h3>
-          </div>
-          <div class="search__container">
-            <input type="text" name="search" placeholder="Search" />
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-          <div class="list menu">
-            <div class="profile list__items" data-target="profile">
-              <i class="fa-solid fa-user"></i><span>Profile</span>
-            </div>
-            <div class="security list__items" data-target="security">
-              <i class="fa-solid fa-shield-halved"></i><span>Security</span>
-            </div>
-            <div class="subscription list__items" data-target="subscription">
-              <i class="fa-solid fa-money-check-dollar"></i><span>Subscription</span>
-            </div>
-            <div class="delete__account list__items" data-target="delete__account">
-              <i class="fa-solid fa-user-xmark"></i><span>Delete Account</span>
-            </div>
-          </div>
-        </div>
-        <div class="details information">
-          <div>
-            <div class="cont profile active">
-              <div>
-                <h3>Information</h3>
-              </div>
-              <div class="logo doctor">
-                <div>
-                  <img src="{{ asset("/images/d6.png") }}" alt="logo" class="person" />
-                  <i class="fa-solid fa-camera"></i>
-                </div>
-              </div>
-              <div>
-                
-                <form method="post" action="{{route('dentist.change')}}">
-                  @csrf
-                  <h4>Personal Information</h4>
-                  <div>
-                    <label for="firstname">First Name</label>
-                    <p>
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      <input type="text" name="firstname" value="{{Auth()->user()->firstname}}" id="name" />
-                    </p>
-                  </div>
-                  <div>
-                    <label for="name">Second Name</label>
-                    <p>
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      <input type="text" name="secondname" value={{Auth()->user()->secondname}} id="name" />
-                    </p>
-                  </div>
-                  <div>
-                    <label for="email">Email</label>
-                    <p>
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      <input type="text" name="email" value="{{Auth()->user()->email}}" id="email" />
-                    </p>
-                  </div>
-                  <div>
-                    <label for="phone">Phone</label>
-                    <p>
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      <input type="text" name="phone" value="{{Auth()->user()->phonenumber}}" id="phone" />
-                    </p>
-                  </div>
-                  <h4>Address</h4>
-                  <div>
-                    <label for="governorate">Governorate</label>
-                    <p>
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      <input type="text" name="governorate" value="{{Auth()->user()->governate}}" id="governorate" />
-                    </p>
-                  </div>
-                  <div>
-                    <label for="region">Region</label>
-                    <p>
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      <input type="text" name="region" value="{{Auth()->user()->region}}" id="region" />
-                    </p>
-                  </div>
-                  <div>
-                    <label for="street">Street</label>
-                    <p>
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      <input type="text" name="street" value="{{Auth()->user()->youraddress}}" id="street" />
-                    </p>
-                  </div>
-
-                  <div>
-                    <input type="submit" value="Save" class="btn my-2 btn-primary" />
-                  </div>
-                </form>
-              </div>
-
-            </div>
-            <div class="cont security inactive">
-              <div>
-                <h3>Security</h3>
-              </div>
-              <div class="list change__contact">
-                <div class="goToChangePass">
-                  <i class="fa-solid fa-unlock-keyhole"></i>Change Password
-                </div>
-                <div class="goToContactInformation">
-                  <i class="fa-solid fa-address-book"></i>Contact
-                  Information
-                </div>
-              </div>
-              <div class="changePass">
-                <div class="changePassHeading">
-                  <div class="titleRow">
-                    <div class="backIcon">
-                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24"
-                        style="enable-background:new 0 0 24 24;" xml:space="preserve">
-                        <path class="st0" d="M17,2H7C4.2,2,2,4.2,2,7v10c0,2.8,2.2,5,5,5h10c2.8,0,5-2.2,5-5V7C22,4.2,19.8,2,17,2z M15,13h-3.6l1.3,1.3
-                            c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0l-3-3c-0.4-0.4-0.4-1,0-1.4l3-3c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4L11.4,11H15
-                            c0.5,0,1,0.5,1,1S15.5,13,15,13z" />
-                      </svg>
-                    </div>
-                    <h4>Change Password</h4>
-                  </div>
-                </div>
-                <div>
-
-                  <form method="post" action="{{route('dentist.change-password')}}">
-
-                    @csrf
-                    <div>
-                      <label for="currentPassword">Current Password</label>
-                      <input name="password" type="password" placeholder="Enter Current Password" id="currentPassword" />
-                    </div>
-                    <div>
-                      <label for="newPassword">New Password</label>
-                      <input name="newpassword" type="password" placeholder="Enter New Password" id="newPassword" />
-                    </div>
-                    <div>
-                      <label for="renterNewPassword">Confirm New Password</label>
-                      <input name="newpassword_confirmation" type="password" placeholder="Confirm New Password" id="renterNewPassword" />
-                    </div>
-                    <div>
-                      <input type="submit" value="Update Password" class="btn" />
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="contactInformation">
-                <div class="changePassHeading">
-                  <div class="titleRow">
-                    <div class="backIcon">
-                      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24"
-                        style="enable-background:new 0 0 24 24;" xml:space="preserve">
-                        <path class="st0" d="M17,2H7C4.2,2,2,4.2,2,7v10c0,2.8,2.2,5,5,5h10c2.8,0,5-2.2,5-5V7C22,4.2,19.8,2,17,2z M15,13h-3.6l1.3,1.3
-                            c0.4,0.4,0.4,1,0,1.4c-0.4,0.4-1,0.4-1.4,0l-3-3c-0.4-0.4-0.4-1,0-1.4l3-3c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4L11.4,11H15
-                            c0.5,0,1,0.5,1,1S15.5,13,15,13z" />
-                      </svg>
-                    </div>
-                    <h4>Contact Information</h4>
-                  </div>
-                </div>
-                <div class="contact__content">
-                  <div class="contactOne">
-                    <div>
-                      <i class="fa-solid fa-envelope"></i>
-                      <span>{{Auth()->user()->email}}</span>
-                    </div>
-
-                    {{-- <div>
-                      <i class="fa-solid fa-ellipsis-vertical options" id="optionOne"></i>
-                    </div>
-                    <div class="dropDown">
-                      <button class="btn dropDownBtn dropDownOne">
-                        Delete
-                      </button>
-                    </div> --}}
-
-                  </div>
-                  <div class="contactOne contactTwo">
-                    <div>
-                      <i class="fa-solid fa-phone"></i>
-                      <span>{{Auth()->user()->phonenumber}}</span>
-                    </div>
-
-                    {{-- <div>
-                      <i class="fa-solid fa-ellipsis-vertical options" id="optionTwo"></i>
-                    </div>
-                    <div class="dropDown">
-                      <button class="btn dropDownBtn dropDownTwo">
-                        Delete
-                      </button>
-                    </div> --}}
-
-                  </div>
-                  {{-- <div class="contactOne contactThree">
-                    <div>
-                      <i class="fa-solid fa-ellipsis-vertical options" id="optionThree"></i>
-                    </div>
-                    <div class="dropDown">
-                      <button class="btn dropDownBtn dropDownThree">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                  <div class="contactOne contactFour">
-                    <div id="addContact">
-                      <i class="fa-solid fa-square-plus"></i>
-                      <span>Add New Contact</span>
-                    </div>
-                    <div class="newEmailAndNumber">
-                      <p id="openAddNumber">Add New Phone Number</p>
-                      <p id="openAddEmail">Add New Email Address</p>
-                    </div>
-                  </div> --}}
-
-                </div>
-              </div>
-            </div>
-            <div class="cont subscription inactive">
-              <div>
-                <h3>Subscription</h3>
-              </div>
-              <div class="row">
-                <div class="premium">
-                  <h6>Premium</h6>
-                  <p class="dis">20% save</p>
-                  <div>
-                    50$
-                    <span>Per 3 Months</span>
-                  </div>
-                  <button class="btn">Subscribe</button>
-                </div>
-                <div class="basic">
-                  <h6>Basic</h6>
-                  <p class="dis">0% save</p>
-                  <div>
-                    10$
-                    <span>Per Month</span>
-                  </div>
-                  <button class="btn">Subscribe</button>
-                </div>
-                <div class="enterprise">
-                  <h6>Enterprise</h6>
-                  <p class="dis">50% save</p>
-                  <div>
-                    100$
-                    <span>Per Year</span>
-                  </div>
-                  <button class="btn">Renew</button>
-                </div>
-              </div>
-              <div class="saved__payment">
-                <div class="row">
-                  <div class="payment">
-                    <h4 class="text-center">Saved Payment Methods</h4>
-                    <div class="col">
-                      <div class="radio form-group">
-                        <div class="check">
-                          <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
-                          <img src="{{ asset("/images/visa.svg") }}" alt="" />
-                        </div>
-                        <label for="CC-0">
-                          <p>**** **** **** 4582</p>
-                          <p>Visa</p>
-                        </label>
-                      </div>
-                      <div class="radio form-group">
-                        <div class="check">
-                          <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
-                          <img src="{{ asset("/images/paypal.svg") }}" alt="" />
-                        </div>
-                        <label for="CC-0">
-                          <p>**** **** **** 4582</p>
-                          <p>Visa</p>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col">
-                      <div class="radio form-group">
-                        <div class="check">
-                          <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
-                          <img src="{{ asset("/images/mastercard.svg") }}" alt="" />
-                        </div>
-                        <label for="CC-0">
-                          <p>**** **** **** 4582</p>
-                          <p>Visa</p>
-                        </label>
-                      </div>
-                      <div class="radio form-group">
-                        <div class="check">
-                          <input id="CC-0" type="radio" name="availPayment" value="4582" checked />
-                          <img src="{{ asset("/images/google-pay.svg") }}" alt="" />
-                        </div>
-                        <label for="CC-0">
-                          <p>**** **** **** 4582</p>
-                          <p>Visa</p>
-                        </label>
-                      </div>
-                    </div>
-                    <div class="form-group col-sm-12">
-                      <div class="col-sm-12 field" id="update-pledge-validate">
-                        <input type="button" class="btn btn-block btn-primary" id="submitUpdatePledge"
-                          value="New Payment Method" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="cont delete__account inactive">
-              <div>
-                <h3>Delete Account</h3>
-              </div>
-              <div class="email">
-                <h6>This Will Delete Your Account Permanentiy</h6>
-                <p>Stephany_Daniel@gmail.com</p>
-              </div>
-              <div class="bullets">
-                <h6>This Following Items Can’t Be Restored :</h6>
-                <p>Optio dolore et tempore temporibus repudiandae voluptas.</p>
-                <p>Optio dolore et tempore temporibus repudiandae voluptas.</p>
-                <p>Optio dolore et tempore temporibus repudiandae voluptas.</p>
-              </div>
-              <div class="reason">
-                <h6>Please Tell us Why You’re Deleting Your Account <span>Requried</span></h6>
-                <div class="inputRadio">
-                  <div>
-                    <input type="radio" id="reason1" name="reasons" checked />
-                    <label for="reason1">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
-                  </div>
-                  <div>
-                    <input type="radio" id="reason2" name="reasons" />
-                    <label for="reason2">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
-                  </div>
-                  <div>
-                    <input type="radio" id="reason3" name="reasons" />
-                    <label for="reason3">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
-                  </div>
-                  <div>
-                    <input type="radio" id="reason4" name="reasons" />
-                    <label for="reason4">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
-                  </div>
-                  <div>
-                    <input type="radio" id="reason5" name="reasons" />
-                    <label for="reason5">Ipsam itaque qui doloremque odio ut similique quia sed.</label>
-                  </div>
-                </div>
-
-              </div>
-              <div>
-                <form>
-                  <div>
-                    <label for="password">To Confirm This Type " Password "</label>
-                  </div>
-                  <div>
-                    <input type="password" id="password" />
-                  </div>
-                  <div class="signInSubmit">
-                    <input type="submit" value="Delete Account" id="signUpSubmit" />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="content logout inactive">
-      <div class="logout_content">
-        <h2>You have been logged out</h2>
-        {{-- <div class="icon" id="logoutButton">
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512"
-            style="enable-background: new 0 0 512 512" xml:space="preserve">
-            <g>
-              <path d="M350.2,327.5c-13.8-1.4-25.5,9.5-25.5,23V375c0,12.7-10.4,23.1-23.1,23.1l-65.3-4.2V95.2c0-19.8-12.6-37.4-31.3-43.9
+  </div>
+</div>
+<div class="content logout inactive">
+  <div class="logout_content">
+    <h2>You have been logged out</h2>
+    {{-- <div class="icon" id="logoutButton">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512"
+        style="enable-background: new 0 0 512 512" xml:space="preserve">
+        <g>
+          <path d="M350.2,327.5c-13.8-1.4-25.5,9.5-25.5,23V375c0,12.7-10.4,23.1-23.1,23.1l-65.3-4.2V95.2c0-19.8-12.6-37.4-31.3-43.9
             l-7.1-2.4H292c12.7,0,23.1,10.4,23.1,23.1v21.8c0,12.1,8.7,23.1,20.7,24.4c13.8,1.4,25.5-9.5,25.5-23V72.1
             c0-38.3-31.1-69.4-82.7-69.4H126.9C66.8,2.6,18,51.4,18,111.5c0,0,0,290.9,0,291.2c0,29.2,12.8,58.9,33.3,79.6
             c35.1,35.4,94.6,25.9,139.9,27.3c25.2-0.6,45-21.9,45-47l0-22.4l65.3,4.2c38.3,0,69.4-31.1,69.4-69.4v-23.1
             C370.9,339.8,362.2,328.7,350.2,327.5z" />
-              <path d="M489.3,211.2L414.1,136c-5.4-5.4-13.5-7-20.5-4.1c-7,2.9-11.6,9.8-11.6,17.4v56.4h-75.2c-10.4,0-18.8,8.4-18.8,18.8
+          <path d="M489.3,211.2L414.1,136c-5.4-5.4-13.5-7-20.5-4.1c-7,2.9-11.6,9.8-11.6,17.4v56.4h-75.2c-10.4,0-18.8,8.4-18.8,18.8
             c0,10.4,8.4,18.8,18.8,18.8H382v56.4c0,7.6,4.6,14.4,11.6,17.4c7,2.9,15.1,1.3,20.5-4.1l75.2-75.2
             C496.6,230.4,496.6,218.5,489.3,211.2z" />
-            </g>
-          </svg>
-        </div> --}}
-      </div>
-    </div>
+        </g>
+      </svg>
+    </div> --}}
   </div>
+</div>
+</div>
 </div>
 
 <!--___________________________________ Modals ___________________________________-->
@@ -1023,27 +910,33 @@
         <h1>Patient Info</h1>
       </div>
     </div>
-    <div class="modal-content">
-      <div class="name__email">
-        <input type="text" placeholder="Full Name or E-mail">
+    <form method="post" action="{{route('reserve')}}">
+      @csrf
+      <div class="modal-content">
+        <div class="name__email">
+          <input name='email' type="text" placeholder="E-mail" required>
+        </div>
+        <div class="name__email">
+          <input name='name' type="text" placeholder="Full name" required>
+        </div>
+        <div class="phone__number">
+          <input name='phone' type="text" placeholder="Phone Number" required>
+        </div>
+        <div class="age__date">
+          <input name='age' type="text" placeholder="Age" required>
+          {{-- <input type="date" placeholder="Date"> --}}
+        </div>
+        <div class="time">
+          {{-- <input type="time" value="13:30"> --}}
+        </div>
+        <div class="info">
+          <textarea name='message' placeholder="Message"></textarea>
+        </div>
+        <div class="new__button">
+          <input class="btn" type="submit" value="Confirm">
+        </div>
       </div>
-      <div class="phone__number">
-        <input type="text" placeholder="Phone Number">
-      </div>
-      <div class="age__date">
-        <input type="text" placeholder="Age">
-        <input type="date" placeholder="Date">
-      </div>
-      <div class="time">
-        <input type="time" value="13:30">
-      </div>
-      <div class="info">
-        <textarea placeholder="Message"></textarea>
-      </div>
-      <div class="new__button">
-        <input class="btn" type="submit" value="Confirm">
-      </div>
-    </div>
+    </form>
   </div>
 </div>
 
