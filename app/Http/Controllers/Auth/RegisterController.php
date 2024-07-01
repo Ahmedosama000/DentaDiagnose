@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'phonenumber' => ['required','numeric'],
             // 'type' => ['required',Rule::in(['center','dentist'])],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'], //password_confirmation
         ]);
 
     }
@@ -74,7 +74,7 @@ class RegisterController extends Controller
         $num = array_key_last($url);
         $type = $url[$num] ;
 
-        if ($url[$num] == 'register' || $url[$num) == "" || $url[$num) == " "{
+        if ($url[$num] == 'register' || $url[$num] == "" || $url[$num] == " "){
             $type = 'center';
         }
 

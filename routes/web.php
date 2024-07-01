@@ -30,6 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/faq', [App\Http\Controllers\HomeController::class, 'FAQ'])->name('faq');
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'Contact'])->name('contact');
 
+//dentist
 
 Route::group(['middleware' => ['auth','dentist']] , function() {
 
@@ -44,6 +45,8 @@ Route::group(['middleware' => ['auth','dentist']] , function() {
     Route::post('reserve/delete/{id}',[DentistController::class,'Destroy'])->name('reserve.destroy');
 
 });
+
+// center
 
 Route::group(['middleware' => ['auth','center']] , function() {
 
