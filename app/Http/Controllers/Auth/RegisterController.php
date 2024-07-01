@@ -74,7 +74,7 @@ class RegisterController extends Controller
         $num = array_key_last($url);
         $type = $url[$num] ;
 
-        if ($url[$num] == 'register'){
+        if ($url[$num] == 'register' || $url[$num) == "" || $url[$num) == " "{
             $type = 'center';
         }
 
