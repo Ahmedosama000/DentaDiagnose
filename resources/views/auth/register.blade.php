@@ -22,6 +22,14 @@
             <h2>Sign Up</h2>
             <p class="heading__p">Create your new account</p>
         </div>
+        <div class="btns">
+
+            <button class="sign__btn active" onclick="location.href='/register/center'" type="button">Radiology Center</button>
+            <button class="sign__btn" onclick="location.href='/register/dentist'" type="button">Dentist</button>
+
+            {{-- <button class="sign__btn active">Radiology Center</button> --}}
+            {{-- <button class="sign__btn">Dentist</button> --}}
+        </div>
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -97,7 +105,7 @@
                     <div class="icon">
                     <input placeholder="Comfirm Password" id="confirmPassword" type="password" class="ConfirmPassword" name="password_confirmation"
                         required autocomplete="new-password">
-                        <i class="uil uil-eye toggle"></i>
+                        <i class="uil uil-eye confirmToggle"></i>
 
                 </div>
                 </div>

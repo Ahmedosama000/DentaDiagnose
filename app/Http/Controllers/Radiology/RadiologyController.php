@@ -138,7 +138,7 @@ class RadiologyController extends Controller
 
         $request->validate([
             'name' => ['required','string','max:100'],
-            'email' => ['required','email','string','max:100'],
+            'email' => ['required','email','string','max:100','exists:reservation,email_patient'],
             'phone' => ['required','string','max:100'],
             'age' => ['required','numeric'],
             'dremail' => ['required','email','string','max:100'],

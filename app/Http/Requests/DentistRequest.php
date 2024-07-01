@@ -23,7 +23,7 @@ class DentistRequest extends FormRequest
     {
         return [
             'center_email' => ['required','email','exists:users,email'],
-            'patient_email' => ['required','email','exists:reservation,email_patient'],
+            'patient_email' => ['required','email','exists:ray,email'],
         ];
     }
 }

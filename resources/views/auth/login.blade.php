@@ -4,14 +4,14 @@
 
 @section('css')
 
-{{-- <link rel="stylesheet" href="css/bootstrap.min.css"> --}}
+{{-- <link rel="stylesheet" href="{{ asset("/css/bootstrap.min.css") }}"> --}}
 
 @endsection
 @section('content')
 
 <div class="signIn">
   <div class="leftSide">
-    <img src="images/login.svg" alt="SignIn">
+    <img src="{{ asset("/images/login.svg") }}" alt="SignIn">
   </div>
   <div class="rightSide">
     <div>
@@ -58,7 +58,7 @@
             </button>
 
             {{-- @if (Route::has('password.request'))
-            <a class="btn btn-link" href="{{ route('password.request') }}">
+            <a class="btn btn-link" href="{{ url("{{ route('password.request') }}") }}">
               {{ __('Forgot Your Password?') }}
             </a>
             @endif --}}
